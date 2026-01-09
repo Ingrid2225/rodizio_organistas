@@ -4,7 +4,7 @@
 Rodízio de organistas (sem envio de mensagens)
 Cultos: segunda e quarta
 Fuso: America/Sao_Paulo
-"""
+
 import os
 import json
 from dataclasses import dataclass, asdict
