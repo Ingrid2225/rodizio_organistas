@@ -1,6 +1,6 @@
 
-# -*- coding: utf-8 -*-
-"""
+#coding: utf-8
+
 Rodízio de organistas (sem envio de mensagens)
 Cultos: segunda e quarta
 Fuso: America/Sao_Paulo
@@ -28,7 +28,6 @@ except ImportError:
 
 
 
-# -------- Organistas --------
 ORGANISTAS = [
     {"nome": "Leila"},
     {"nome": "Juliana"},
@@ -40,19 +39,19 @@ ORGANISTAS = [
     {"nome": "Tayna"},
 ]
 
-# -------- Dados da escala --------
+
 @dataclass
 class ItemEscala:
-    data: str          # YYYY-MM-DD
-    dia_semana: str    # "Segunda" ou "Quarta"
-    culto: str         # "Segunda" ou "Quarta"
+    data: str          
+    dia_semana: str   
+    culto: str         
     organista: str
 
     @property
     def data_date(self) -> date:
         return datetime.strptime(self.data, "%Y-%m-%d").date()
 
-# -------- Utilidades --------
+
 def proxima_segunda(base: date) -> date:
     """Retorna a próxima segunda (não hoje)."""
     dias = (7 - base.weekday()) % 7
@@ -71,7 +70,7 @@ def dia_semana_label(dt: date) -> str:
     # 0 = Monday ... 2 = Wednesday
     return "Segunda" if dt.weekday() == 0 else "Quarta"
 
-# -------- Persistência --------
+
 def salvar_escala(escala: List[ItemEscala]) -> None:
     with open(ESCALA_ARQUIVO, "w", encoding="utf-8") as f:
         json.dump([asdict(i) for i in escala], f, ensure_ascii=False, indent=2)
@@ -83,7 +82,7 @@ def carregar_escala() -> List[ItemEscala]:
         data = json.load(f)
     return [ItemEscala(**item) for item in data]
 
-# -------- Lógica de escala --------
+
 def gerar_escala(inicio: date, semanas: int) -> List[ItemEscala]:
     """
     Gera escala em rodízio: 2 cultos por semana (Seg/Qua), rotacionando os 8 nomes.
