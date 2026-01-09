@@ -11,15 +11,17 @@ Como usar
 Gerar escala (12 semanas):
 python main.py --gerar-escala 12
 
-Listar escala
+Listar escala:
 python main.py --listar
 
-Simular lembretes de hoje
+Simular lembretes de hoje:
 python main.py --simular-hoje
 
 Gerar escala com data base:
 python main.py --gerar-escala 12 --inicio 2026-01-12
 
+MELHORIAS
+Integrar comm whatsapp para enviar mensagem para organista.
 
 
 
